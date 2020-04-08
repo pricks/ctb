@@ -7,7 +7,6 @@
 //
 
 #import "EduTabBarController.h"
-#import "BaseNavigationController.h"
 #import "GlobalDefines.h"
 
 #define kClassKey   @"rootVCClassString"
@@ -49,7 +48,7 @@
     [childItemsArray enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
         UIViewController *vc = [NSClassFromString(dict[kClassKey]) new];
         vc.title = dict[kTitleKey];
-        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
         UITabBarItem *item = nav.tabBarItem;
         item.title = dict[kTitleKey];
         item.image = [UIImage imageNamed:dict[kImgKey]];

@@ -11,4 +11,6 @@
 
 @interface SbenViewController : UIViewController
 
+@property(nonatomic, strong) UITableView *tableView;
+
 @end
