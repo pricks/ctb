@@ -18,6 +18,9 @@
 
 @interface SbenViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 {
+    NSMutableArray *_myCtbArray;//myctb
+    
+    
     NSMutableArray *_MerchantArray;
     NSString *_locationInfoStr;
     NSInteger _KindID;//分类查询ID，默认-1
@@ -153,85 +156,6 @@
 //    [self setUpTableView];
 }
 
-//获取商家列表
--(void)getMerchantList{
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSString *str = @"%2C";
-    
-    NSString *hostStr = @"http://api.meituan.com/group/v1/poi/select/cate/";
-    NSString *paramsStr = @"?__skck=40aaaf01c2fc4801b9c059efcd7aa146&__skcy=WOdaAXJTFxIjDdjmt1z%2FJRzB6Y0%3D&__skno=91D0095F-156B-4392-902A-A20975EB9696&__skts=1436408836.151516&__skua=bd6b6e8eadfad15571a15c3b9ef9199a&__vhost=api.mobile.meituan.com&areaId=-1&ci=1&cityId=1&client=iphone&coupon=all&limit=20&movieBundleVersion=100&msid=48E2B810-805D-4821-9CDD-D5C9E01BC98A2015-07-09-09-42570&mypos=";
-    
-    NSString *str1 = [NSString stringWithFormat:@"%@%ld%@",hostStr,(long)_KindID,paramsStr];
-    
-    NSString *str2 = @"&sort=smart&userid=10086&utm_campaign=AgroupBgroupD100Fa20141120nanning__m1__leftflow___ab_pindaochangsha__a__leftflow___ab_gxtest__gd__leftflow___ab_gxhceshi__nostrategy__leftflow___ab_i550poi_ktv__d__j___ab_chunceshishuju__a__a___ab_gxh_82__nostrategy__leftflow___ab_i_group_5_3_poidetaildeallist__a__b___b1junglehomepagecatesort__b__leftflow___ab_gxhceshi0202__b__a___ab_pindaoshenyang__a__leftflow___ab_pindaoquxincelue0630__b__b1___ab_i_group_5_6_searchkuang__a__leftflow___i_group_5_2_deallist_poitype__d__d___ab_i550poi_xxyl__b__leftflow___ab_b_food_57_purepoilist_extinfo__a__a___ab_waimaiwending__a__a___ab_waimaizhanshi__b__b1___ab_i550poi_lr__d__leftflow___ab_i_group_5_5_onsite__b__b___ab_xinkeceshi__b__leftflowGmerchant&utm_content=4B8C0B46F5B0527D55EA292904FD7E12E48FB7BEA8DF50BFE7828AF7F20BB08D&utm_medium=iphone&utm_source=AppStore&utm_term=5.7&uuid=4B8C0B46F5B0527D55EA292904FD7E12E48FB7BEA8DF50BFE7828AF7F20BB08D&version_name=5.7";
-    
-    
-//    NSString *urlStr = [NSString stringWithFormat:@"%@%f%@%f&offset=%zd%@",str1, delegate.latitude, str, delegate.longitude, _offset,str2];
-//
-//    __weak __typeof(self) weakself = self;
-//    [[NetworkSingleton sharedManager] getMerchantListResult:nil url:urlStr successBlock:^(id responseBody){
-//        NSLog(@"获取商家列表成功");
-//        NSMutableArray *dataArray = [responseBody objectForKey:@"data"];
-//        NSLog(@"%ld",dataArray.count);
-//        NSLog(@"offset:%ld",_offset);
-//        if (_offset == 0) {
-//            NSLog(@"0000");
-//            [_MerchantArray removeAllObjects];
-//        }
-//
-//        for (int i = 0; i < dataArray.count; i++) {
-//            JZMerchantModel *JZMerM = [JZMerchantModel objectWithKeyValues:dataArray[i]];
-//            [_MerchantArray addObject:JZMerM];
-//        }
-//
-//        [weakself.tableView reloadData];
-//
-//        if (_offset == 0 && dataArray.count!=0) {
-//            [weakself.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//        }
-//        [weakself.tableView.header endRefreshing];
-//        [weakself.tableView.footer endRefreshing];
-//
-//    } failureBlock:^(NSString *error){
-//        NSLog(@"获取商家列表失败：%@",error);
-//        [weakself.tableView.header endRefreshing];
-//        [weakself.tableView.footer endRefreshing];
-//    }];
-    
-}
-
-//获取当前位置
--(void)getPresentLocation{
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSString *urlStr = @"http://api.meituan.com/group/v1/city/latlng/39.982207,116.311906?__skck=40aaaf01c2fc4801b9c059efcd7aa146&__skcy=dhdVkMoRTQge4RJQFlm2iIF2e5s%3D&__skno=9B646232-F7BF-4642-B9B0-9A6ED68003D2&__skts=1436408843.060582&__skua=bd6b6e8eadfad15571a15c3b9ef9199a&__vhost=api.mobile.meituan.com&ci=1&client=iphone&movieBundleVersion=100&msid=48E2B810-805D-4821-9CDD-D5C9E01BC98A2015-07-09-09-42570&tag=1&userid=10086&utm_campaign=AgroupBgroupD100Fa20141120nanning__m1__leftflow___ab_pindaochangsha__a__leftflow___ab_gxtest__gd__leftflow___ab_gxhceshi__nostrategy__leftflow___ab_i550poi_ktv__d__j___ab_chunceshishuju__a__a___ab_gxh_82__nostrategy__leftflow___ab_i_group_5_3_poidetaildeallist__a__b___b1junglehomepagecatesort__b__leftflow___ab_gxhceshi0202__b__a___ab_pindaoshenyang__a__leftflow___ab_pindaoquxincelue0630__b__b1___ab_i_group_5_6_searchkuang__a__leftflow___i_group_5_2_deallist_poitype__d__d___ab_i550poi_xxyl__b__leftflow___ab_b_food_57_purepoilist_extinfo__a__a___ab_waimaiwending__a__a___ab_waimaizhanshi__b__b1___ab_i550poi_lr__d__leftflow___ab_i_group_5_5_onsite__b__b___ab_xinkeceshi__b__leftflowGmerchant&utm_content=4B8C0B46F5B0527D55EA292904FD7E12E48FB7BEA8DF50BFE7828AF7F20BB08D&utm_medium=iphone&utm_source=AppStore&utm_term=5.7&uuid=4B8C0B46F5B0527D55EA292904FD7E12E48FB7BEA8DF50BFE7828AF7F20BB08D&version_name=5.7";
-    _locationInfoStr = @"正在定位...";
-    [self.tableView reloadData];
-    __weak __typeof(self) weakself = self;
-//    [[NetworkSingleton sharedManager] getPresentLocationResult:nil url:urlStr successBlock:^(id responseBody){
-//        NSLog(@"获取当前位置信息成功");
-//        NSDictionary *dataDic = [responseBody objectForKey:@"data"];
-//        _locationInfoStr = [dataDic objectForKey:@"detail"];
-//
-//        NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-//        [userD setObject:_locationInfoStr forKey:@"location"];
-//
-//        [weakself.tableView reloadData];
-//    } failureBlock:^(NSString *error){
-//        NSLog(@"获取当前位置信息失败:%@",error);
-//    }];
-}
-
-//获取cate分组信息
--(void)getCateListData{
-    NSString *urlStr = @"http://api.meituan.com/group/v1/poi/cates/showlist?__skck=40aaaf01c2fc4801b9c059efcd7aa146&__skcy=hSjSxtGbfd1QtKRMWnoFV4GB8jU%3D&__skno=0DEF926E-FB94-43B8-819E-DD510241BCC3&__skts=1436504818.875030&__skua=bd6b6e8eadfad15571a15c3b9ef9199a&__vhost=api.mobile.meituan.com&ci=1&cityId=1&client=iphone&movieBundleVersion=100&msid=48E2B810-805D-4821-9CDD-D5C9E01BC98A2015-07-10-12-44726&userid=10086&utm_campaign=AgroupBgroupD100Fa20141120nanning__m1__leftflow___ab_pindaochangsha__a__leftflow___ab_gxtest__gd__leftflow___ab_gxhceshi__nostrategy__leftflow___ab_i550poi_ktv__d__j___ab_chunceshishuju__a__a___ab_gxh_82__nostrategy__leftflow___ab_i_group_5_3_poidetaildeallist__a__b___b1junglehomepagecatesort__b__leftflow___ab_gxhceshi0202__b__a___ab_pindaoquxincelue0630__b__b1___ab_i550poi_xxyl__b__leftflow___ab_i_group_5_6_searchkuang__a__leftflow___i_group_5_2_deallist_poitype__d__d___ab_pindaoshenyang__a__leftflow___ab_b_food_57_purepoilist_extinfo__a__a___ab_waimaiwending__a__a___ab_waimaizhanshi__b__b1___ab_i550poi_lr__d__leftflow___ab_i_group_5_5_onsite__b__b___ab_xinkeceshi__b__leftflowGmerchant&utm_content=4B8C0B46F5B0527D55EA292904FD7E12E48FB7BEA8DF50BFE7828AF7F20BB08D&utm_medium=iphone&utm_source=AppStore&utm_term=5.7&uuid=4B8C0B46F5B0527D55EA292904FD7E12E48FB7BEA8DF50BFE7828AF7F20BB08D&version_name=5.7";
-    
-//    [[NetworkSingleton sharedManager] getCateListResult:nil url:urlStr successBlock:^(id responseBody){
-//        NSLog(@"获取cate分组信息成功");
-//    } failureBlock:^(NSString *error){
-//        NSLog(@"获取cate分组信息失败:%@",error);
-//    }];
-}
-
 
 
 #pragma mark - UITableViewDataSource
@@ -273,21 +197,25 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    static NSString *cellIndentifer = @"courseCell1";
+    JZAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifer];
+    if(nil == cell)
+    {
+        cell = [[JZAlbumCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifer frame:CGRectMake(0, 0, screen_width, 90)];
+        // 下划线
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 89.5, screen_width, 0.5)];
+        lineView.backgroundColor = separaterColor;
+        [cell addSubview:lineView];
+    }
+    cell.delegate = self;
+    [cell setImgurlArray:_albumImgurlArray];
+    return cell;
+    
+    
     SbenTableCell *cell = (SbenTableCell *)[tableView dequeueReusableCellWithIdentifier:@"SCHEDULE_TABLE"];
-        if (!cell) {
-            cell = [[SbenTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SCHEDULE_TABLE"];
-        }
-
-        NSUInteger section = indexPath.section;
-        NSUInteger row = indexPath.row;
-    //    cell.textLabel.text = [NSString stringWithFormat:@"语文,%ld",(long)row];
-
-        SbenCellModel *model = [SbenCellModel new];
-    //    model.imageName = [SDAnalogDataGenerator randomIconImageName];
-        model.className = [NSString stringWithFormat:@"语文,%ld",(long)row];
-        model.time = [NSString stringWithFormat:@"上午%ld:00",(long)row];
-        model.studyContent = @"20以内的加减法练习 发看到类似；假两件发快递三；九分裤大量；咖啡机大数据罚款了奥德赛；分拣啊 fafasdf范德萨就就；将理解我好好";
-        cell.model = model;
+    if (!cell) {
+        cell = [[SbenTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SCHEDULE_TABLE"];
+    }
         
         return cell;
     
@@ -332,7 +260,14 @@
     NSString *urlStr = @"http://localhost:8080/myctb/1";
     [[NetworkSingleton sharedManager] getRecommendCourseResult:nil url:urlStr successBlock:^(id responseBody){
         NSLog(@"请求我的错题本成功");
-        NSMutableArray *focusArray = [responseBody objectForKey:@"ctbList"];
+        NSMutableArray *data = [responseBody objectForKey:@"data"];
+        
+        int size = data.count;
+        for (int i = 0; i < size; ++i)
+        {
+            SbenCellModel *ctbCellModel = [SbenCellModel objectWithKeyValues:data[i]];
+            [_myCtbArray addObject:ctbCellModel];
+        }
         
         weakself.tableView.hidden = NO;
         [weakself.tableView reloadData];

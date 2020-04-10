@@ -131,10 +131,10 @@
 {
     _model = model;
     
-    self.iconImageView.image = [UIImage imageNamed:model.imageName];
-    self.classNameLabel.text = model.className;
-    self.timeLabel.text = model.time;
-    self.studyContentLabel.text = model.studyContent;
+//    self.iconImageView.image = [UIImage imageNamed:model.imageName];
+//    self.classNameLabel.text = model.className;
+//    self.timeLabel.text = model.time;
+//    self.studyContentLabel.text = model.studyContent;
 }
 
 
