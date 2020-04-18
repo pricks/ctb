@@ -8,12 +8,12 @@
 
 
 #import <UIKit/UIKit.h>
-#import "SbenCellModel.h"
+#import "FSbenCellModel.h"
 
 //ctb表格行
-@interface SbenTableCell : UITableViewCell
+@interface FSbenTableCell : UITableViewCell
 
-@property (nonatomic, strong) SbenCellModel *model;
+@property (nonatomic, strong) FSbenCellModel *model;
 
 + (CGFloat)fixedHeight;
 

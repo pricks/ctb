@@ -74,6 +74,9 @@
 		5A0BE39D243CC0FF00831859 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE361243CC0FF00831859 /* UIImageView+WebCache.m */; };
 		5A0BE39E243CC0FF00831859 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE364243CC0FF00831859 /* UIView+WebCacheOperation.m */; };
 		5A0BE39F243CC0FF00831859 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE368243CC0FF00831859 /* UIButton+WebCache.m */; };
+		5A0BE3B52443235900831859 /* FSbenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE3AE2443235900831859 /* FSbenViewController.m */; };
+		5A0BE3B62443235900831859 /* FSbenCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE3B12443235900831859 /* FSbenCellModel.m */; };
+		5A0BE3B72443235900831859 /* FSbenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE3B32443235900831859 /* FSbenTableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -233,6 +236,12 @@
 		5A0BE367243CC0FF00831859 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		5A0BE368243CC0FF00831859 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		5A0BE369243CC0FF00831859 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		5A0BE3AD2443235900831859 /* FSbenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSbenViewController.h; sourceTree = "<group>"; };
+		5A0BE3AE2443235900831859 /* FSbenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSbenViewController.m; sourceTree = "<group>"; };
+		5A0BE3B02443235900831859 /* FSbenCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSbenCellModel.h; sourceTree = "<group>"; };
+		5A0BE3B12443235900831859 /* FSbenCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSbenCellModel.m; sourceTree = "<group>"; };
+		5A0BE3B32443235900831859 /* FSbenTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSbenTableCell.m; sourceTree = "<group>"; };
+		5A0BE3B42443235900831859 /* FSbenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSbenTableCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +292,7 @@
 		5A0BE28C2430D55100831859 /* ctb */ = {
 			isa = PBXGroup;
 			children = (
+				5A0BE3AC2443235900831859 /* fsben */,
 				5A0BE2F3243CC0FE00831859 /* Pods */,
 				5A0BE2CA2430E51E00831859 /* common */,
 				5A0BE2D32431778E00831859 /* resources */,
@@ -573,6 +583,35 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		5A0BE3AC2443235900831859 /* fsben */ = {
+			isa = PBXGroup;
+			children = (
+				5A0BE3AD2443235900831859 /* FSbenViewController.h */,
+				5A0BE3AE2443235900831859 /* FSbenViewController.m */,
+				5A0BE3AF2443235900831859 /* model */,
+				5A0BE3B22443235900831859 /* view */,
+			);
+			path = fsben;
+			sourceTree = "<group>";
+		};
+		5A0BE3AF2443235900831859 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				5A0BE3B02443235900831859 /* FSbenCellModel.h */,
+				5A0BE3B12443235900831859 /* FSbenCellModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		5A0BE3B22443235900831859 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				5A0BE3B32443235900831859 /* FSbenTableCell.m */,
+				5A0BE3B42443235900831859 /* FSbenTableCell.h */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -709,6 +748,7 @@
 				5A0BE36E243CC0FF00831859 /* NSObject+MJCoding.m in Sources */,
 				5A0BE39B243CC0FF00831859 /* SDWebImageDownloaderOperation.m in Sources */,
 				5A0BE386243CC0FF00831859 /* UIButton+AFNetworking.m in Sources */,
+				5A0BE3B62443235900831859 /* FSbenCellModel.m in Sources */,
 				5A0BE38C243CC0FF00831859 /* AFURLSessionManager.m in Sources */,
 				5A0BE28F2430D55100831859 /* AppDelegate.m in Sources */,
 				5A0BE2ED2434255100831859 /* UIView+SDAutoLayout.m in Sources */,
@@ -717,6 +757,7 @@
 				5A0BE373243CC0FF00831859 /* MJRefreshConst.m in Sources */,
 				5A0BE2EE2434255100831859 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				5A0BE38A243CC0FF00831859 /* AFHTTPSessionManager.m in Sources */,
+				5A0BE3B52443235900831859 /* FSbenViewController.m in Sources */,
 				5A0BE37F243CC0FF00831859 /* SVIndefiniteAnimatedView.m in Sources */,
 				5A0BE2C52430DA7900831859 /* EduTabBarController.m in Sources */,
 				5A0BE36C243CC0FF00831859 /* MJType.m in Sources */,
@@ -735,6 +776,7 @@
 				5A0BE38B243CC0FF00831859 /* AFURLConnectionOperation.m in Sources */,
 				5A0BE396243CC0FF00831859 /* UIImage+GIF.m in Sources */,
 				5A0BE370243CC0FF00831859 /* NSString+MJExtension.m in Sources */,
+				5A0BE3B72443235900831859 /* FSbenTableCell.m in Sources */,
 				5A0BE397243CC0FF00831859 /* UIImage+MultiFormat.m in Sources */,
 				5A0BE37A243CC0FF00831859 /* MJRefreshComponent.m in Sources */,
 				5A0BE379243CC0FF00831859 /* UIScrollView+MJExtension.m in Sources */,
@@ -914,16 +956,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UR5KJ967W;
 				INFOPLIST_FILE = ctb/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bw.edu.ctb.ctb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -931,16 +975,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UR5KJ967W;
 				INFOPLIST_FILE = ctb/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bw.edu.ctb.ctb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -6,9 +6,9 @@
 //  Copyright © 2020 yueming. All rights reserved.
 //
 
-#import "SbenViewController.h"
-#import "SbenTableCell.h"
-#import "SbenCellModel.h"
+#import "FSbenViewController.h"
+#import "FSbenTableCell.h"
+#import "FSbenCellModel.h"
 
 #import "GlobalDefines.h"
 #import "AppDelegate.h"
@@ -16,7 +16,7 @@
 #import "MJRefresh.h"
 #import "MJExtension.h"
 
-@interface SbenViewController ()<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
+@interface FSbenViewController ()<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 {
     NSMutableArray *_myCtbArray;//myctb
     
@@ -32,7 +32,7 @@
 }
 @end
 
-@implementation SbenViewController
+@implementation FSbenViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,8 +50,12 @@
 -(void)initData{
     _myCtbArray = [[NSMutableArray alloc] init];
     
+    _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height)];
+    _rootScrollView.contentSize = CGSizeMake(0, screen_height+64);
+    [self.view addSubview:_rootScrollView];
+    
     _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 64+40)];
-    [self.view addSubview:_topView];
+    [_rootScrollView addSubview:_topView];
 }
 
 -(void)setNav{
@@ -148,16 +152,16 @@
 
 -(void)setUpTableView{
     //tableview
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+40, screen_width, screen_height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+40, screen_width, screen_height-64-40) style:UITableViewStylePlain];
 //    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen_width, screen_height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
+    [_rootScrollView addSubview:self.tableView];
     
 //    self.tableView.tableHeaderView = _topView;
     
-    [_tableView registerClass:[SbenTableCell class] forCellReuseIdentifier:@"SCHEDULE_TABLE"];
+    [_tableView registerClass:[FSbenTableCell class] forCellReuseIdentifier:@"SCHEDULE_TABLE"];
     
     // 添加下拉的动画图片
     // 设置下拉刷新回调
@@ -187,12 +191,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIndentifier = @"SCHEDULE_TABLE";
-    SbenTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+    FSbenTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
     if (cell == nil) {
-        cell = [[SbenTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        cell = [[FSbenTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
     }
     
-    SbenCellModel *model = _myCtbArray[indexPath.row];
+    FSbenCellModel *model = _myCtbArray[indexPath.row];
     [cell setModel:model];
     return cell;
 }
@@ -230,7 +234,7 @@
         int size = data.count;
         for (int i = 0; i < size; ++i)
         {
-            SbenCellModel *ctbCellModel = [SbenCellModel objectWithKeyValues:data[i]];
+            FSbenCellModel *ctbCellModel = [FSbenCellModel objectWithKeyValues:data[i]];
             [_myCtbArray addObject:ctbCellModel];
         }
         
@@ -256,27 +260,26 @@
     
     if(_y < 0){//往下滚动
 //        NSLog(@"-滚动条位置: %@", @(_y));
-        NSLog(@"-滚动条位置-top: %@", @(_top));
+//        NSLog(@"-滚动条位置-top: %@", @(_top));
 //        _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
 //
 //        _topViewY = -_y;
 //
 //        NSLog(@"-topView.frame.y: %@", @(_topView.frame.origin.y));
     } else if(_y > 0){
-        NSLog(@"+滚动条位置-top: %@", @(_top));
-        NSLog(@"+滚动条位置: %@", @(_y));
-        if(_topViewY > -64 ){
-            _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
-            self.tableView.frame = CGRectMake(0, 64+40-_y, screen_width, screen_height);
-            scrollView.bounds = CGRectOffset(scrollView.bounds, 0, 64+40-_y);
-        }
-        
-        NSLog(@"+topView.frame.y: %@", @(_topView.frame.origin.y));
+//        NSLog(@"+滚动条位置-top: %@", @(_top));
+//        NSLog(@"+滚动条位置: %@", @(_y));
+//        if(_topViewY > -64 ){
+//            _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
+//            self.tableView.frame = CGRectMake(0, 64+40-_y, screen_width, screen_height);
+//        }
+//
+//        NSLog(@"+topView.frame.y: %@", @(_topView.frame.origin.y));
     } else{
-        NSLog(@"0滚动条位置-top: %@", @(_top));
-        if(_topViewY >= -64 && _topViewY < 0){
-            _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
-        }
+//        NSLog(@"0滚动条位置-top: %@", @(_top));
+//        if(_topViewY >= -64 && _topViewY < 0){
+//            _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
+//        }
     }
     
 //    _classTabs._y = scrollView.contentOffset.y;

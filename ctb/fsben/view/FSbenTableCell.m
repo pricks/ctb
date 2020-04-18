@@ -6,11 +6,11 @@
 //  Copyright © 2020 yueming. All rights reserved.
 //
 
-#import "SbenTableCell.h"
+#import "FSbenTableCell.h"
 #import "UIView+SDAutoLayout.h"
 #import "GlobalDefines.h"
 
-@interface SbenTableCell ()
+@interface FSbenTableCell ()
 {
     UILabel *_title;
     UILabel *_author;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation SbenTableCell
+@implementation FSbenTableCell
 
 #pragma mark - Intial
 
@@ -94,7 +94,7 @@
 
 #pragma mark - properties
 
-- (void)setModel:(SbenCellModel *)model
+- (void)setModel:(FSbenCellModel *)model
 {
     _model = model;
     

@@ -9,7 +9,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SbenViewController : UIViewController
+@interface FSbenViewController : UIViewController
+
+@property(nonatomic, strong) UIScrollView *rootScrollView;//根视图
 
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) UIView *topView;

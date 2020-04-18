@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     NSArray *childItemsArray = @[
-                                 @{kClassKey  : @"SbenViewController",
+                                 @{kClassKey  : @"FSbenViewController",
                                    kTitleKey  : @"首页",
                                    kImgKey    : @"tabbar_mainframe",
                                    kSelImgKey : @"tabbar_mainframeHL"},
