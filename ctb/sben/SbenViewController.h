@@ -11,6 +11,8 @@
 
 @interface SbenViewController : UIViewController
 
+@property(nonatomic, strong) UIImagePickerController *camera;
+
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) UIView *topView;
 @property(nonatomic, strong) UIView *topNav;

@@ -16,8 +16,11 @@
 #import "MJRefresh.h"
 #import "MJExtension.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <AVFoundation/AVFoundation.h>
+
 @interface SbenViewController ()<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
-{
+{    
     NSMutableArray *_myCtbArray;//myctb
     
     
@@ -30,6 +33,14 @@
     
     UIView *_maskView;
 }
+
+//video api
+-(void) switchMOVtoMP:(NSURL *)inputURL;
++(NSString*)getCurrentTimes;
+-(void)deleteVideo:(NSString *)path;
+- (void)convertVideoToLowQuailtyWithInputURL:(NSURL*)inputURL
+                                   outputURL:(NSURL*)outputURL;
+
 @end
 
 @implementation SbenViewController
@@ -45,7 +56,305 @@
     [self setNav];
     [self setClassTabs];
     [self setUpTableView];
+    [self setVideoBtn];
 }
+
+- (void)setVideoBtn {
+    UIButton *btn=[UIButton new];
+    [btn setTitle:@"record video" forState:UIControlStateNormal];
+    [btn setBackgroundColor:UIColor.redColor];
+
+    [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+    btn.translatesAutoresizingMaskIntoConstraints=false;
+    [self.view addSubview:btn];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:146]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:46]];
+    [btn addTarget:nil action:@selector(btnclick) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+-(void)btnclick
+{
+    bool canUse= [self isCameraAvailable];
+    if(canUse)
+    {
+        _camera=[[UIImagePickerController alloc]init];
+        self.camera.sourceType=UIImagePickerControllerSourceTypeCamera;
+        self.camera.showsCameraControls=true;
+        self.camera.mediaTypes=@[(NSString *)kUTTypeMovie];//typemovie with voice
+        self.camera.allowsEditing=true;
+      
+        /*
+         设置视频长度
+         */
+        self.camera.videoMaximumDuration=60;//seconds
+     
+        /*
+         设置视频质量
+         UIImagePickerControllerQualityTypeHigh = 0,       // highest quality
+         UIImagePickerControllerQualityTypeMedium = 1,     // medium quality, suitable for transmission via Wi-Fi
+         UIImagePickerControllerQualityTypeLow = 2,         // lowest quality, suitable for tranmission via cellular network
+         UIImagePickerControllerQualityType640x480 NS_ENUM_AVAILABLE_IOS(4_0) = 3,    // VGA quality
+         UIImagePickerControllerQualityTypeIFrame1280x720 NS_ENUM_AVAILABLE_IOS(5_0) = 4,
+         UIImagePickerControllerQualityTypeIFrame960x540 NS_ENUM_AVAILABLE_IOS(5_0) = 5,
+         */
+        
+        self.camera.videoQuality= UIImagePickerControllerQualityType640x480;
+        
+        
+        
+//        CGFloat camScaleup=1.8;
+//        self.camera.cameraViewTransform=CGAffineTransformScale(self.camera.cameraViewTransform, camScaleup, camScaleup);
+        
+        self.camera.delegate=self;
+        self.view.backgroundColor=UIColor.lightGrayColor;
+        
+        if(self.navigationController)
+        {
+            NSLog(@"have navigation");
+            [self.navigationController presentViewController:self.camera animated:true completion:^(){}];
+        }
+        else{
+            NSLog(@"no navigation");
+            [self presentViewController:self.camera animated:true completion:nil];
+        }
+    }else{
+        NSLog(@"can not use camera");
+        
+        
+    }
+    
+}
+
+- (BOOL) isCameraAvailable{
+    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+}
+
+//delegate
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:true completion:nil];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info
+{
+    [picker dismissViewControllerAnimated:true completion:nil];
+    NSString *urlStr =[NSString stringWithFormat:@"%@", [info objectForKey:UIImagePickerControllerMediaURL]];
+    
+    
+    NSString *documentsDirPath =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) firstObject];
+    NSURL *documentsDirUrl = [NSURL fileURLWithPath:documentsDirPath isDirectory:YES];
+    
+    NSString *temp=[SbenViewController getCurrentTimes];
+    NSString *outputName=[temp stringByAppendingString:@".mp4"];
+    NSURL *saveMovieFile = [NSURL URLWithString:outputName relativeToURL:documentsDirUrl];
+    
+    [self convertVideoToLowQuailtyWithInputURL:[[NSURL alloc]initWithString:urlStr] outputURL:saveMovieFile];
+}
+
+//-(void) switchMOVtoMP:(NSString *)inputStr
+-(void) switchMOVtoMP:(NSURL *)inputUrl
+{
+//    NSURL *inputUrl = [[NSURL alloc]initWithString:inputStr];
+    NSLog(@"mov转mp4 ==》%@",inputUrl);
+    
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:inputUrl options:nil];
+    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
+
+    NSString *documentsDirPath =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) firstObject];
+    NSURL *documentsDirUrl = [NSURL fileURLWithPath:documentsDirPath isDirectory:YES];
+
+    NSString *temp=[SbenViewController getCurrentTimes];
+    NSString *outputName=[temp stringByAppendingString:@".mp4"];
+
+    NSURL *saveMovieFile = [NSURL URLWithString:outputName relativeToURL:documentsDirUrl];
+    exportSession.outputURL =saveMovieFile;
+    exportSession.outputFileType =AVFileTypeMPEG4;
+    exportSession.shouldOptimizeForNetworkUse= YES;
+    [exportSession exportAsynchronouslyWithCompletionHandler:^(){
+        int exportStatus = exportSession.status;
+        switch (exportStatus) {
+            case AVAssetExportSessionStatusFailed: {
+                    NSError *exportError = exportSession.error;
+                    NSLog (@"AVAssetExportSessionStatusFailed: %@", exportError);
+                    break;
+                    }
+                case AVAssetExportSessionStatusCompleted: {
+                NSLog(@"视频转码成功");
+                }
+                
+        }
+   
+    }];
+    
+}
++(NSString*)getCurrentTimes{
+   
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    //现在时间,你可以输出来看下是什么格式
+    NSDate *datenow = [NSDate date];
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+
+    currentTimeString=[currentTimeString stringByReplacingOccurrencesOfString:@"-"withString:@""];
+    currentTimeString=[currentTimeString stringByReplacingOccurrencesOfString:@" "withString:@""];
+    currentTimeString=[currentTimeString stringByReplacingOccurrencesOfString:@":"withString:@""];
+    return currentTimeString;
+    
+}
+-(void)deleteVideo:(NSString *)path;
+{
+    
+}
+- (void)convertVideoToLowQuailtyWithInputURL:(NSURL*)inputURL
+                                   outputURL:(NSURL*)outputURL
+{
+    
+    //setup video writer
+    AVAsset *videoAsset = [[AVURLAsset alloc] initWithURL:inputURL options:nil];
+    
+    AVAssetTrack *videoTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+   
+    CGSize videoSize = videoTrack.naturalSize;
+    //1250000
+    NSDictionary *videoWriterCompressionSettings =  [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:440000], AVVideoAverageBitRateKey,
+                                                     [NSNumber numberWithInt:20],AVVideoMaxKeyFrameIntervalKey,
+                                                     AVVideoProfileLevelH264Baseline30,AVVideoProfileLevelKey, //标清AVVideoProfileLevelH264Baseline30
+                                                     [NSNumber numberWithInt:34],AVVideoExpectedSourceFrameRateKey,
+                                                     nil];
+    
+    
+    NSDictionary *videoWriterSettings;
+    if (@available(iOS 11.0, *)) {
+        videoWriterSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecTypeH264, AVVideoCodecKey, videoWriterCompressionSettings, AVVideoCompressionPropertiesKey, [NSNumber numberWithFloat:videoSize.width], AVVideoWidthKey, [NSNumber numberWithFloat:videoSize.height], AVVideoHeightKey, nil];
+        
+      
+    } else {
+        // Fallback on earlier versions
+         videoWriterSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey, videoWriterCompressionSettings, AVVideoCompressionPropertiesKey, [NSNumber numberWithFloat:videoSize.width], AVVideoWidthKey, [NSNumber numberWithFloat:videoSize.height], AVVideoHeightKey, nil];
+        
+    }
+    AVAssetWriterInput* videoWriterInput = [AVAssetWriterInput
+                                            assetWriterInputWithMediaType:AVMediaTypeVideo
+                                            outputSettings:videoWriterSettings];
+    
+    videoWriterInput.expectsMediaDataInRealTime = YES;
+    
+    videoWriterInput.transform = videoTrack.preferredTransform;
+    
+    AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:outputURL fileType:AVFileTypeQuickTimeMovie error:nil];
+    
+    [videoWriter addInput:videoWriterInput];
+    
+    //setup video reader
+    NSDictionary *videoReaderSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    
+    AVAssetReaderTrackOutput *videoReaderOutput = [[AVAssetReaderTrackOutput alloc] initWithTrack:videoTrack outputSettings:videoReaderSettings];
+    
+    AVAssetReader *videoReader = [[AVAssetReader alloc] initWithAsset:videoAsset error:nil];
+    
+    [videoReader addOutput:videoReaderOutput];
+    
+    //setup audio writer
+    AVAssetWriterInput* audioWriterInput = [AVAssetWriterInput
+                                            assetWriterInputWithMediaType:AVMediaTypeAudio
+                                            outputSettings:nil];
+    
+    audioWriterInput.expectsMediaDataInRealTime = NO;
+    
+    [videoWriter addInput:audioWriterInput];
+    
+    //setup audio reader
+    AVAssetTrack* audioTrack = [[videoAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0];
+    
+    AVAssetReaderOutput *audioReaderOutput = [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:audioTrack outputSettings:nil];
+    
+    AVAssetReader *audioReader = [AVAssetReader assetReaderWithAsset:videoAsset error:nil];
+    
+    [audioReader addOutput:audioReaderOutput];
+    
+    [videoWriter startWriting];
+    
+    //start writing from video reader
+    [videoReader startReading];
+    
+    [videoWriter startSessionAtSourceTime:kCMTimeZero];
+    
+    dispatch_queue_t processingQueue = dispatch_queue_create("processingQueue1", NULL);
+    
+    [videoWriterInput requestMediaDataWhenReadyOnQueue:processingQueue usingBlock:
+     ^{
+         
+         while ([videoWriterInput isReadyForMoreMediaData]) {
+             
+             CMSampleBufferRef sampleBuffer;
+             
+             if ([videoReader status] == AVAssetReaderStatusReading &&
+                 (sampleBuffer = [videoReaderOutput copyNextSampleBuffer])) {
+                 
+                 [videoWriterInput appendSampleBuffer:sampleBuffer];
+                 CFRelease(sampleBuffer);
+             }
+             
+             else {
+                 
+                 [videoWriterInput markAsFinished];
+                 
+                 if ([videoReader status] == AVAssetReaderStatusCompleted) {
+                     
+                     //start writing from audio reader
+                     [audioReader startReading];
+                     
+                     [videoWriter startSessionAtSourceTime:kCMTimeZero];
+                     
+                     dispatch_queue_t processingQueue = dispatch_queue_create("processingQueue2", NULL);
+                     
+                     [audioWriterInput requestMediaDataWhenReadyOnQueue:processingQueue usingBlock:^{
+                         
+                         while (audioWriterInput.readyForMoreMediaData) {
+                             
+                             CMSampleBufferRef sampleBuffer;
+                             
+                             if ([audioReader status] == AVAssetReaderStatusReading &&
+                                 (sampleBuffer = [audioReaderOutput copyNextSampleBuffer])) {
+                                 
+                                 [audioWriterInput appendSampleBuffer:sampleBuffer];
+                                 CFRelease(sampleBuffer);
+                             }
+                             
+                             else {
+                                 
+                                 [audioWriterInput markAsFinished];
+                                 
+                                 if ([audioReader status] == AVAssetReaderStatusCompleted) {
+                                     
+                                     [videoWriter finishWritingWithCompletionHandler:^(){
+
+                                         
+//                                          [self switchMOVtoMP:outputURL];
+                                     }];
+                                     
+                                 }
+                             }
+                         }
+                         
+                     }
+                      ];
+                 }
+             }
+         }
+     }
+     ];
+}
+
+//-------------video end
+
+
+
 
 -(void)initData{
     _myCtbArray = [[NSMutableArray alloc] init];
