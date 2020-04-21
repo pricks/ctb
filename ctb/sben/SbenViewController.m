@@ -151,6 +151,9 @@
     NSString *outputName=[temp stringByAppendingString:@".mp4"];
     NSURL *saveMovieFile = [NSURL URLWithString:outputName relativeToURL:documentsDirUrl];
     
+    NSLog(@"urlStr=%@, outputName=%@, saveMovieFile=%@",urlStr,outputName, saveMovieFile);
+    NSLog(@"documentsDirPath=%@, documentsDirUrl=%@",documentsDirPath,documentsDirUrl);
+    
     [self convertVideoToLowQuailtyWithInputURL:[[NSURL alloc]initWithString:urlStr] outputURL:saveMovieFile];
 }
 
@@ -565,27 +568,27 @@
     
     if(_y < 0){//往下滚动
 //        NSLog(@"-滚动条位置: %@", @(_y));
-        NSLog(@"-滚动条位置-top: %@", @(_top));
+//        NSLog(@"-滚动条位置-top: %@", @(_top));
 //        _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
 //
 //        _topViewY = -_y;
 //
 //        NSLog(@"-topView.frame.y: %@", @(_topView.frame.origin.y));
     } else if(_y > 0){
-        NSLog(@"+滚动条位置-top: %@", @(_top));
-        NSLog(@"+滚动条位置: %@", @(_y));
-        if(_topViewY > -64 ){
-            _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
-            self.tableView.frame = CGRectMake(0, 64+40-_y, screen_width, screen_height);
-            scrollView.bounds = CGRectOffset(scrollView.bounds, 0, 64+40-_y);
-        }
-        
-        NSLog(@"+topView.frame.y: %@", @(_topView.frame.origin.y));
+//        NSLog(@"+滚动条位置-top: %@", @(_top));
+//        NSLog(@"+滚动条位置: %@", @(_y));
+//        if(_topViewY > -64 ){
+//            _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
+//            self.tableView.frame = CGRectMake(0, 64+40-_y, screen_width, screen_height);
+//            scrollView.bounds = CGRectOffset(scrollView.bounds, 0, 64+40-_y);
+//        }
+//
+//        NSLog(@"+topView.frame.y: %@", @(_topView.frame.origin.y));
     } else{
-        NSLog(@"0滚动条位置-top: %@", @(_top));
-        if(_topViewY >= -64 && _topViewY < 0){
-            _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
-        }
+//        NSLog(@"0滚动条位置-top: %@", @(_top));
+//        if(_topViewY >= -64 && _topViewY < 0){
+//            _topView.frame = CGRectMake(0, -_y, screen_width, 64+40);
+//        }
     }
     
 //    _classTabs._y = scrollView.contentOffset.y;

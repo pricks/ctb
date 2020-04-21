@@ -169,7 +169,7 @@
 //    [self.tableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     
     // 马上进入刷新状态
-    [self.tableView.gifHeader beginRefreshing];
+//    [self.tableView.gifHeader beginRefreshing];
 }
 
 
