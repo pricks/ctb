@@ -23,6 +23,8 @@
 {    
     NSMutableArray *_myCtbArray;//myctb
     
+    NSData *_imageData;
+    
     
     NSMutableArray *_MerchantArray;
     NSString *_locationInfoStr;
@@ -138,23 +140,95 @@
 {
     [picker dismissViewControllerAnimated:true completion:nil];
 }
+//得到图片或者视频后, 调用该代理方法
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info
 {
+    // UIImagePickerControllerOriginalImage 原始图片
+    // UIImagePickerControllerEditedImage 编辑后图片
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    _imageData = UIImageJPEGRepresentation(image, 0.1);
+    
+    //获取存放的照片
+    //获取Documents文件夹目录
+//    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentPath = [path objectAtIndex:0];
+    //指定新建文件夹路径
+//    NSString *imageDocPath = [documentPath stringByAppendingPathComponent:@"PhotoFile"];
+    
+    
+
     [picker dismissViewControllerAnimated:true completion:nil];
-    NSString *urlStr =[NSString stringWithFormat:@"%@", [info objectForKey:UIImagePickerControllerMediaURL]];
     
     
-    NSString *documentsDirPath =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) firstObject];
-    NSURL *documentsDirUrl = [NSURL fileURLWithPath:documentsDirPath isDirectory:YES];
     
-    NSString *temp=[SbenViewController getCurrentTimes];
-    NSString *outputName=[temp stringByAppendingString:@".mp4"];
-    NSURL *saveMovieFile = [NSURL URLWithString:outputName relativeToURL:documentsDirUrl];
     
-    NSLog(@"urlStr=%@, outputName=%@, saveMovieFile=%@",urlStr,outputName, saveMovieFile);
-    NSLog(@"documentsDirPath=%@, documentsDirUrl=%@",documentsDirPath,documentsDirUrl);
+//    NSString *urlStr =[NSString stringWithFormat:@"%@", [info objectForKey:UIImagePickerControllerMediaURL]];
+//
+//
+//    NSString *documentsDirPath =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) firstObject];
+//    NSURL *documentsDirUrl = [NSURL fileURLWithPath:documentsDirPath isDirectory:YES];
+//
+//    NSString *temp=[SbenViewController getCurrentTimes];
+//    NSString *outputName=[temp stringByAppendingString:@".mp4"];
+//    NSURL *saveMovieFile = [NSURL URLWithString:outputName relativeToURL:documentsDirUrl];
+//
+//    NSLog(@"urlStr=%@, outputName=%@, saveMovieFile=%@",urlStr,outputName, saveMovieFile);
+//    NSLog(@"documentsDirPath=%@, documentsDirUrl=%@",documentsDirPath,documentsDirUrl);
     
-    [self convertVideoToLowQuailtyWithInputURL:[[NSURL alloc]initWithString:urlStr] outputURL:saveMovieFile];
+    //格式转换
+//    [self convertVideoToLowQuailtyWithInputURL:[[NSURL alloc]initWithString:urlStr] outputURL:saveMovieFile];
+}
+//上传图片到web服务器
+- (void)upLoad{
+
+    //1.创建管理者对象
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    //2.上传文件,在这里我们还要求传别的参数，用字典保存一下，不需要的童鞋可以省略此步骤
+//    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:_fireID,@"id",_longitude,@"longitude",_latitude,@"latitude", nil];
+    
+    
+    //ur: 你的后台给你url，有其他需要拼接的参数可以在这里拼接，图片文件不用管
+    NSString *urlString = @"http://localhost:8080/myctb/fuci/fu";
+
+
+  //post请求
+    [manager POST:urlString parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+    // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+    // 要解决此问题，
+    // 可以在上传时使用当前的系统事件作为文件名
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // 设置时间格式
+        formatter.dateFormat            = @"yyyyMMddHHmmss";
+        NSString *str                         = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName               = [NSString stringWithFormat:@"%@.png", str];
+   
+
+         /*
+         此方法参数
+             1. 要上传的[二进制数据]
+             2. 我这里的imgFile是对应后台给你url里面的图片参数，别瞎带。
+             3. 要保存在服务器上的[文件名]
+             4. 上传文件的[mimeType]
+        */
+        [formData appendPartWithFileData:imageData name:@"imgFile" fileName:fileName mimeType:@"image/png"];
+        
+        
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        //打印下上传进度
+        NSLog(@"%lf",1.0 *uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //请求成功
+        NSLog(@"请求成功：%@",responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        //请求失败
+        NSLog(@"请求失败：%@",error);
+    }];
 }
 
 //-(void) switchMOVtoMP:(NSString *)inputStr
