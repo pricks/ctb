@@ -214,12 +214,22 @@
 
     //1.创建管理者对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    //接收类型不一致请替换一致text/html或别的
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
+                                                             @"text/html",
+                                                             @"image/jpeg",
+                                                             @"image/png",
+                                                             @"application/octet-stream",
+                                                             @"text/json",
+                                                             nil];
+    
     //2.上传文件,在这里我们还要求传别的参数，用字典保存一下，不需要的童鞋可以省略此步骤
 //    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:_fireID,@"id",_longitude,@"longitude",_latitude,@"latitude", nil];
     
     
     //ur: 你的后台给你url，有其他需要拼接的参数可以在这里拼接，图片文件不用管
-    NSString *urlString = @"http://30.117.60.221:8080/myctb/fuci/fu";
+//    NSString *urlString = @"http://30.117.60.221:8080/myctb/fuci/fu";
+    NSString *urlString = @"http://192.168.0.100:8080/myctb/fuci/fu";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"zc"] = @"xxx";//[headiconURL stringByAppendingString:@".jpg"];
@@ -234,7 +244,7 @@
              NSString *str                         = [formatter stringFromDate:[NSDate date]];
              NSString *fileName               = [NSString stringWithFormat:@"%@.png", str];
         
-
+NSLog(@"filename：%@",fileName);
               /*
               此方法参数
                   1. 要上传的[二进制数据]
@@ -242,7 +252,7 @@
                   3. 要保存在服务器上的[文件名]
                   4. 上传文件的[mimeType]
              */
-             [formData appendPartWithFileData:_imageData name:@"imgFile" fileName:fileName mimeType:@"image/png"];
+             [formData appendPartWithFileData:_imageData name:@"fileName" fileName:fileName mimeType:@"image/png"];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"请求成功：%@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
