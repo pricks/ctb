@@ -74,11 +74,11 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:146]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:46]];
-    [btn addTarget:nil action:@selector(btnclick) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:nil action:@selector(btnclick4Photo) forControlEvents:UIControlEventTouchUpInside];
     
 }
-
--(void)btnclick
+//录像
+-(void)btnclick4Video
 {
     bool canUse= [self isCameraAvailable];
     if(canUse)
@@ -130,6 +130,33 @@
     }
     
 }
+//拍照
+-(void)btnclick4Photo
+{
+    bool canUse= [self isCameraAvailable];
+    if(canUse)
+    {
+        _camera=[[UIImagePickerController alloc]init];
+        self.camera.sourceType=UIImagePickerControllerSourceTypeCamera;
+        self.camera.allowsEditing=true;
+        
+        self.camera.delegate=self;
+        self.view.backgroundColor=UIColor.lightGrayColor;
+        
+        if(self.navigationController)
+        {
+            NSLog(@"have navigation");
+            [self.navigationController presentViewController:self.camera animated:true completion:^(){}];
+        }
+        else{
+            NSLog(@"no navigation");
+            [self presentViewController:self.camera animated:true completion:nil];
+        }
+    }else{
+        NSLog(@"can not use camera");
+    }
+    
+}
 
 - (BOOL) isCameraAvailable{
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
@@ -147,6 +174,10 @@
     // UIImagePickerControllerEditedImage 编辑后图片
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     _imageData = UIImageJPEGRepresentation(image, 0.1);
+    
+    [self upLoad];
+    
+    NSLog(@"============image=%@",image);
     
     //获取存放的照片
     //获取Documents文件夹目录
@@ -188,47 +219,74 @@
     
     
     //ur: 你的后台给你url，有其他需要拼接的参数可以在这里拼接，图片文件不用管
-    NSString *urlString = @"http://localhost:8080/myctb/fuci/fu";
+    NSString *urlString = @"http://30.117.60.221:8080/myctb/fuci/fu";
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"zc"] = @"xxx";//[headiconURL stringByAppendingString:@".jpg"];
 
+    [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+         // 要解决此问题，
+         // 可以在上传时使用当前的系统事件作为文件名
+             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+         // 设置时间格式
+             formatter.dateFormat            = @"yyyyMMddHHmmss";
+             NSString *str                         = [formatter stringFromDate:[NSDate date]];
+             NSString *fileName               = [NSString stringWithFormat:@"%@.png", str];
+        
 
-  //post请求
-    [manager POST:urlString parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
-    // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
-    // 要解决此问题，
-    // 可以在上传时使用当前的系统事件作为文件名
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // 设置时间格式
-        formatter.dateFormat            = @"yyyyMMddHHmmss";
-        NSString *str                         = [formatter stringFromDate:[NSDate date]];
-        NSString *fileName               = [NSString stringWithFormat:@"%@.png", str];
-   
-
-         /*
-         此方法参数
-             1. 要上传的[二进制数据]
-             2. 我这里的imgFile是对应后台给你url里面的图片参数，别瞎带。
-             3. 要保存在服务器上的[文件名]
-             4. 上传文件的[mimeType]
-        */
-        [formData appendPartWithFileData:imageData name:@"imgFile" fileName:fileName mimeType:@"image/png"];
-        
-        
-        
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-        //打印下上传进度
-        NSLog(@"%lf",1.0 *uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        //请求成功
+              /*
+              此方法参数
+                  1. 要上传的[二进制数据]
+                  2. 我这里的imgFile是对应后台给你url里面的图片参数，别瞎带。
+                  3. 要保存在服务器上的[文件名]
+                  4. 上传文件的[mimeType]
+             */
+             [formData appendPartWithFileData:_imageData name:@"imgFile" fileName:fileName mimeType:@"image/png"];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"请求成功：%@",responseObject);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        //请求失败
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"请求失败：%@",error);
     }];
+
+  //post请求
+//    [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//
+//    // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+//    // 要解决此问题，
+//    // 可以在上传时使用当前的系统事件作为文件名
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    // 设置时间格式
+//        formatter.dateFormat            = @"yyyyMMddHHmmss";
+//        NSString *str                         = [formatter stringFromDate:[NSDate date]];
+//        NSString *fileName               = [NSString stringWithFormat:@"%@.png", str];
+//
+//
+//         /*
+//         此方法参数
+//             1. 要上传的[二进制数据]
+//             2. 我这里的imgFile是对应后台给你url里面的图片参数，别瞎带。
+//             3. 要保存在服务器上的[文件名]
+//             4. 上传文件的[mimeType]
+//        */
+//        [formData appendPartWithFileData:_imageData name:@"imgFile" fileName:fileName mimeType:@"image/png"];
+//
+//
+//
+//    } progress:^(NSProgress * _Nonnull uploadProgress) {
+//
+//        //打印下上传进度
+//        NSLog(@"%lf",1.0 *uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//
+//        //请求成功
+//        NSLog(@"请求成功：%@",responseObject);
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//        //请求失败
+//        NSLog(@"请求失败：%@",error);
+//    }];
 }
 
 //-(void) switchMOVtoMP:(NSString *)inputStr
