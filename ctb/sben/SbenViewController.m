@@ -9,6 +9,7 @@
 #import "SbenViewController.h"
 #import "SbenTableCell.h"
 #import "SbenCellModel.h"
+#import "SbenUploadImgController.h"
 
 #import "GlobalDefines.h"
 #import "AppDelegate.h"
@@ -255,8 +256,16 @@ NSLog(@"filename：%@",fileName);
              [formData appendPartWithFileData:_imageData name:@"fileName" fileName:fileName mimeType:@"image/png"];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"请求成功：%@",responseObject);
+        
+        SbenUploadImgController *dcNewVc = [SbenUploadImgController new];
+//        dcNewVc.saveType = DCSaveAdressNewType;
+        [self.navigationController pushViewController:dcNewVc animated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"请求失败：%@",error);
+        
+        SbenUploadImgController *dcNewVc = [SbenUploadImgController new];
+        //        dcNewVc.saveType = DCSaveAdressNewType;
+                [self.navigationController pushViewController:dcNewVc animated:YES];
     }];
 
   //post请求

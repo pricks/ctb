@@ -77,6 +77,7 @@
 		5A0BE3B52443235900831859 /* FSbenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE3AE2443235900831859 /* FSbenViewController.m */; };
 		5A0BE3B62443235900831859 /* FSbenCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE3B12443235900831859 /* FSbenCellModel.m */; };
 		5A0BE3B72443235900831859 /* FSbenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE3B32443235900831859 /* FSbenTableCell.m */; };
+		5A3C95EA245E5F760034A164 /* SbenUploadImgController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C95E9245E5F760034A164 /* SbenUploadImgController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +243,8 @@
 		5A0BE3B12443235900831859 /* FSbenCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSbenCellModel.m; sourceTree = "<group>"; };
 		5A0BE3B32443235900831859 /* FSbenTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSbenTableCell.m; sourceTree = "<group>"; };
 		5A0BE3B42443235900831859 /* FSbenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSbenTableCell.h; sourceTree = "<group>"; };
+		5A3C95E8245E5F610034A164 /* SbenUploadImgController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SbenUploadImgController.h; sourceTree = "<group>"; };
+		5A3C95E9245E5F760034A164 /* SbenUploadImgController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SbenUploadImgController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +362,8 @@
 				5A0BE2DC243422B600831859 /* model */,
 				5A0BE2CE2430E6C200831859 /* SbenViewController.h */,
 				5A0BE2CF2430E6FC00831859 /* SbenViewController.m */,
+				5A3C95E8245E5F610034A164 /* SbenUploadImgController.h */,
+				5A3C95E9245E5F760034A164 /* SbenUploadImgController.m */,
 			);
 			path = sben;
 			sourceTree = "<group>";
@@ -776,6 +781,7 @@
 				5A0BE38B243CC0FF00831859 /* AFURLConnectionOperation.m in Sources */,
 				5A0BE396243CC0FF00831859 /* UIImage+GIF.m in Sources */,
 				5A0BE370243CC0FF00831859 /* NSString+MJExtension.m in Sources */,
+				5A3C95EA245E5F760034A164 /* SbenUploadImgController.m in Sources */,
 				5A0BE3B72443235900831859 /* FSbenTableCell.m in Sources */,
 				5A0BE397243CC0FF00831859 /* UIImage+MultiFormat.m in Sources */,
 				5A0BE37A243CC0FF00831859 /* MJRefreshComponent.m in Sources */,
