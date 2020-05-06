@@ -10,4 +10,6 @@
 
 @interface SbenUploadImgController : UIViewController
 
+@property (strong , nonatomic)UIImage *image;
+
 @end

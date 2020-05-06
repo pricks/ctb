@@ -171,12 +171,14 @@
 //得到图片或者视频后, 调用该代理方法
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info
 {
+    [picker dismissViewControllerAnimated:true completion:nil];
+    
     // UIImagePickerControllerOriginalImage 原始图片
     // UIImagePickerControllerEditedImage 编辑后图片
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     _imageData = UIImageJPEGRepresentation(image, 0.1);
     
-    [self upLoad];
+    [self upLoad:image];
     
     NSLog(@"============image=%@",image);
     
@@ -189,7 +191,7 @@
     
     
 
-    [picker dismissViewControllerAnimated:true completion:nil];
+//    [picker dismissViewControllerAnimated:true completion:nil];
     
     
     
@@ -211,7 +213,8 @@
 //    [self convertVideoToLowQuailtyWithInputURL:[[NSURL alloc]initWithString:urlStr] outputURL:saveMovieFile];
 }
 //上传图片到web服务器
-- (void)upLoad{
+- (void)upLoad:(UIImage*) image
+{
 
     //1.创建管理者对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -257,15 +260,17 @@ NSLog(@"filename：%@",fileName);
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"请求成功：%@",responseObject);
         
-        SbenUploadImgController *dcNewVc = [SbenUploadImgController new];
-//        dcNewVc.saveType = DCSaveAdressNewType;
-        [self.navigationController pushViewController:dcNewVc animated:YES];
+        SbenUploadImgController *suiVC = [SbenUploadImgController new];
+        suiVC.image = image;
+        [self presentViewController:suiVC animated:YES completion:nil];
+        //        [self.navigationController pushViewController:suiVC animated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"请求失败：%@",error);
         
-        SbenUploadImgController *dcNewVc = [SbenUploadImgController new];
-        //        dcNewVc.saveType = DCSaveAdressNewType;
-                [self.navigationController pushViewController:dcNewVc animated:YES];
+        SbenUploadImgController *suiVC = [SbenUploadImgController new];
+        suiVC.image = image;
+        [self presentViewController:suiVC animated:YES completion:nil];
+//        [self.navigationController pushViewController:suiVC animated:YES];
     }];
 
   //post请求

@@ -14,6 +14,8 @@
 #define Global_mainBackgroundColor SDColor(248, 248, 248, 1)
 #define TimeLineCellHighlightedColor [UIColor colorWithRed:92/255.0 green:140/255.0 blue:193/255.0 alpha:1.0]
 
+//全局背景色
+#define DCBGColor RGB(245,245,245)
 
 // 2.获得RGB颜色
 #define RGBA(r, g, b, a)                    [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
