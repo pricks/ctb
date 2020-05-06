@@ -135,6 +135,11 @@
     [button setTitleColor:[UIColor blackColor] forState:0];
     [button addTarget:self action:@selector(saveButtonBarItemClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+<<<<<<< HEAD
+=======
+    self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
+    [self.view addSubview:button];
+>>>>>>> 342e78622b30829ac130e131279ef0cf040123ec
 }
 
 

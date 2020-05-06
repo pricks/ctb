@@ -232,8 +232,8 @@
     
     
     //ur: 你的后台给你url，有其他需要拼接的参数可以在这里拼接，图片文件不用管
-//    NSString *urlString = @"http://30.117.60.221:8080/myctb/fuci/fu";
-    NSString *urlString = @"http://192.168.0.100:8080/myctb/fuci/fu";
+    NSString *urlString = @"http://30.117.104.5:8080/myctb/fuci/fu";
+//    NSString *urlString = @"http://192.168.0.100:8080/myctb/fuci/fu";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"zc"] = @"xxx";//[headiconURL stringByAppendingString:@".jpg"];
