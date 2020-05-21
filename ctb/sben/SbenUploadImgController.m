@@ -14,6 +14,8 @@
 #import "MJRefresh.h"
 #import "MJExtension.h"
 
+#import "KKCutTool.h"
+
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -126,6 +128,9 @@
     [self.view addSubview:ctb_image];
     
     
+    //默认剪切
+    KKCutTool *cutTool = [KKCutTool new];
+    [cutTool setup:ctb_image frame:ctb_image.frame];
     
     
     UIButton *button = [[UIButton alloc] init];
@@ -135,11 +140,6 @@
     [button setTitleColor:[UIColor blackColor] forState:0];
     [button addTarget:self action:@selector(saveButtonBarItemClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-<<<<<<< HEAD
-=======
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
-    [self.view addSubview:button];
->>>>>>> 342e78622b30829ac130e131279ef0cf040123ec
 }
 
 

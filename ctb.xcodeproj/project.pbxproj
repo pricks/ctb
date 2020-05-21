@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		034E994A24753799005A1CC8 /* KKCutGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E994324753799005A1CC8 /* KKCutGridView.m */; };
+		034E994B24753799005A1CC8 /* KKCutGridLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E994424753799005A1CC8 /* KKCutGridLayer.m */; };
+		034E994C24753799005A1CC8 /* KKCutCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E994624753799005A1CC8 /* KKCutCircle.m */; };
+		034E994D24753799005A1CC8 /* KKCutTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E994824753799005A1CC8 /* KKCutTool.m */; };
+		034E9954247542DB005A1CC8 /* KKImageToolBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E9951247542DB005A1CC8 /* KKImageToolBase.m */; };
+		034E9955247542DB005A1CC8 /* KKToolBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E9953247542DB005A1CC8 /* KKToolBarItem.m */; };
+		034E995D2475430E005A1CC8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E99572475430E005A1CC8 /* UIView+Frame.m */; };
+		034E995E2475430E005A1CC8 /* KKClassList.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E99582475430E005A1CC8 /* KKClassList.m */; };
+		034E995F2475430E005A1CC8 /* KKScaleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E995C2475430E005A1CC8 /* KKScaleButton.m */; };
+		034E996724754340005A1CC8 /* KKImageToolInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E996124754340005A1CC8 /* KKImageToolInfo.m */; };
+		034E996824754340005A1CC8 /* KKImageEditorTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E996224754340005A1CC8 /* KKImageEditorTheme.m */; };
+		034E996924754340005A1CC8 /* KKImageEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E996424754340005A1CC8 /* KKImageEditorViewController.m */; };
 		5A0BE28F2430D55100831859 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE28E2430D55100831859 /* AppDelegate.m */; };
 		5A0BE29A2430D55500831859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A0BE2992430D55500831859 /* Assets.xcassets */; };
 		5A0BE2A02430D55500831859 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE29F2430D55500831859 /* main.m */; };
@@ -98,6 +110,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		034E994224753799005A1CC8 /* KKCutCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCutCircle.h; sourceTree = "<group>"; };
+		034E994324753799005A1CC8 /* KKCutGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKCutGridView.m; sourceTree = "<group>"; };
+		034E994424753799005A1CC8 /* KKCutGridLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKCutGridLayer.m; sourceTree = "<group>"; };
+		034E994524753799005A1CC8 /* KKCutGridLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCutGridLayer.h; sourceTree = "<group>"; };
+		034E994624753799005A1CC8 /* KKCutCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKCutCircle.m; sourceTree = "<group>"; };
+		034E994724753799005A1CC8 /* KKCutGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCutGridView.h; sourceTree = "<group>"; };
+		034E994824753799005A1CC8 /* KKCutTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKCutTool.m; sourceTree = "<group>"; };
+		034E994924753799005A1CC8 /* KKCutTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCutTool.h; sourceTree = "<group>"; };
+		034E994F247542DB005A1CC8 /* KKImageToolBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKImageToolBase.h; sourceTree = "<group>"; };
+		034E9950247542DB005A1CC8 /* KKImageToolProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKImageToolProtocol.h; sourceTree = "<group>"; };
+		034E9951247542DB005A1CC8 /* KKImageToolBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKImageToolBase.m; sourceTree = "<group>"; };
+		034E9952247542DB005A1CC8 /* KKToolBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKToolBarItem.h; sourceTree = "<group>"; };
+		034E9953247542DB005A1CC8 /* KKToolBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKToolBarItem.m; sourceTree = "<group>"; };
+		034E99572475430E005A1CC8 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		034E99582475430E005A1CC8 /* KKClassList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKClassList.m; sourceTree = "<group>"; };
+		034E99592475430E005A1CC8 /* KKClassList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKClassList.h; sourceTree = "<group>"; };
+		034E995A2475430E005A1CC8 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		034E995B2475430E005A1CC8 /* KKScaleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKScaleButton.h; sourceTree = "<group>"; };
+		034E995C2475430E005A1CC8 /* KKScaleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKScaleButton.m; sourceTree = "<group>"; };
+		034E996124754340005A1CC8 /* KKImageToolInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKImageToolInfo.m; sourceTree = "<group>"; };
+		034E996224754340005A1CC8 /* KKImageEditorTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKImageEditorTheme.m; sourceTree = "<group>"; };
+		034E996324754340005A1CC8 /* KKImageToolInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKImageToolInfo.h; sourceTree = "<group>"; };
+		034E996424754340005A1CC8 /* KKImageEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKImageEditorViewController.m; sourceTree = "<group>"; };
+		034E996524754340005A1CC8 /* KKImageEditorTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKImageEditorTheme.h; sourceTree = "<group>"; };
+		034E996624754340005A1CC8 /* KKImageEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKImageEditorViewController.h; sourceTree = "<group>"; };
 		5A0BE28A2430D55100831859 /* ctb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ctb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A0BE28D2430D55100831859 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5A0BE28E2430D55100831859 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -272,6 +309,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		034E99402475374C005A1CC8 /* imgtool */ = {
+			isa = PBXGroup;
+			children = (
+				034E996024754324005A1CC8 /* imageEditor */,
+				034E9956247542E9005A1CC8 /* imageUtils */,
+				034E994E24754297005A1CC8 /* imageBase */,
+				034E99412475376E005A1CC8 /* cut */,
+			);
+			path = imgtool;
+			sourceTree = "<group>";
+		};
+		034E99412475376E005A1CC8 /* cut */ = {
+			isa = PBXGroup;
+			children = (
+				034E994224753799005A1CC8 /* KKCutCircle.h */,
+				034E994624753799005A1CC8 /* KKCutCircle.m */,
+				034E994524753799005A1CC8 /* KKCutGridLayer.h */,
+				034E994424753799005A1CC8 /* KKCutGridLayer.m */,
+				034E994724753799005A1CC8 /* KKCutGridView.h */,
+				034E994324753799005A1CC8 /* KKCutGridView.m */,
+				034E994924753799005A1CC8 /* KKCutTool.h */,
+				034E994824753799005A1CC8 /* KKCutTool.m */,
+			);
+			path = cut;
+			sourceTree = "<group>";
+		};
+		034E994E24754297005A1CC8 /* imageBase */ = {
+			isa = PBXGroup;
+			children = (
+				034E994F247542DB005A1CC8 /* KKImageToolBase.h */,
+				034E9951247542DB005A1CC8 /* KKImageToolBase.m */,
+				034E9950247542DB005A1CC8 /* KKImageToolProtocol.h */,
+				034E9952247542DB005A1CC8 /* KKToolBarItem.h */,
+				034E9953247542DB005A1CC8 /* KKToolBarItem.m */,
+			);
+			path = imageBase;
+			sourceTree = "<group>";
+		};
+		034E9956247542E9005A1CC8 /* imageUtils */ = {
+			isa = PBXGroup;
+			children = (
+				034E99592475430E005A1CC8 /* KKClassList.h */,
+				034E99582475430E005A1CC8 /* KKClassList.m */,
+				034E995B2475430E005A1CC8 /* KKScaleButton.h */,
+				034E995C2475430E005A1CC8 /* KKScaleButton.m */,
+				034E995A2475430E005A1CC8 /* UIView+Frame.h */,
+				034E99572475430E005A1CC8 /* UIView+Frame.m */,
+			);
+			path = imageUtils;
+			sourceTree = "<group>";
+		};
+		034E996024754324005A1CC8 /* imageEditor */ = {
+			isa = PBXGroup;
+			children = (
+				034E996524754340005A1CC8 /* KKImageEditorTheme.h */,
+				034E996224754340005A1CC8 /* KKImageEditorTheme.m */,
+				034E996624754340005A1CC8 /* KKImageEditorViewController.h */,
+				034E996424754340005A1CC8 /* KKImageEditorViewController.m */,
+				034E996324754340005A1CC8 /* KKImageToolInfo.h */,
+				034E996124754340005A1CC8 /* KKImageToolInfo.m */,
+			);
+			path = imageEditor;
+			sourceTree = "<group>";
+		};
 		5A0BE2812430D55100831859 = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +441,7 @@
 		5A0BE2CA2430E51E00831859 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				034E99402475374C005A1CC8 /* imgtool */,
 				5A0BE2EF243CBF4800831859 /* network */,
 				5A0BE2E82434255100831859 /* util */,
 				5A0BE2CB2430E52400831859 /* global */,
@@ -758,8 +860,10 @@
 				5A0BE28F2430D55100831859 /* AppDelegate.m in Sources */,
 				5A0BE2ED2434255100831859 /* UIView+SDAutoLayout.m in Sources */,
 				5A0BE393243CC0FF00831859 /* SDWebImageDecoder.m in Sources */,
+				034E9955247542DB005A1CC8 /* KKToolBarItem.m in Sources */,
 				5A0BE38E243CC0FF00831859 /* AFURLRequestSerialization.m in Sources */,
 				5A0BE373243CC0FF00831859 /* MJRefreshConst.m in Sources */,
+				034E994D24753799005A1CC8 /* KKCutTool.m in Sources */,
 				5A0BE2EE2434255100831859 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				5A0BE38A243CC0FF00831859 /* AFHTTPSessionManager.m in Sources */,
 				5A0BE3B52443235900831859 /* FSbenViewController.m in Sources */,
@@ -767,22 +871,28 @@
 				5A0BE2C52430DA7900831859 /* EduTabBarController.m in Sources */,
 				5A0BE36C243CC0FF00831859 /* MJType.m in Sources */,
 				5A0BE2E32434246C00831859 /* SbenTableCell.m in Sources */,
+				034E994A24753799005A1CC8 /* KKCutGridView.m in Sources */,
 				5A0BE39F243CC0FF00831859 /* UIButton+WebCache.m in Sources */,
 				5A0BE387243CC0FF00831859 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				5A0BE390243CC0FF00831859 /* AFNetworkReachabilityManager.m in Sources */,
+				034E996724754340005A1CC8 /* KKImageToolInfo.m in Sources */,
 				5A0BE394243CC0FF00831859 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5A0BE36F243CC0FF00831859 /* NSObject+MJProperty.m in Sources */,
 				5A0BE37E243CC0FF00831859 /* SVProgressHUD.m in Sources */,
 				5A0BE37B243CC0FF00831859 /* UIView+MJExtension.m in Sources */,
 				5A0BE374243CC0FF00831859 /* MJRefreshFooter.m in Sources */,
 				5A0BE375243CC0FF00831859 /* MJRefreshHeader.m in Sources */,
+				034E995E2475430E005A1CC8 /* KKClassList.m in Sources */,
 				5A0BE381243CC0FF00831859 /* UIAlertView+AFNetworking.m in Sources */,
 				5A0BE39D243CC0FF00831859 /* UIImageView+WebCache.m in Sources */,
 				5A0BE38B243CC0FF00831859 /* AFURLConnectionOperation.m in Sources */,
 				5A0BE396243CC0FF00831859 /* UIImage+GIF.m in Sources */,
+				034E995F2475430E005A1CC8 /* KKScaleButton.m in Sources */,
 				5A0BE370243CC0FF00831859 /* NSString+MJExtension.m in Sources */,
 				5A3C95EA245E5F760034A164 /* SbenUploadImgController.m in Sources */,
 				5A0BE3B72443235900831859 /* FSbenTableCell.m in Sources */,
+				034E994C24753799005A1CC8 /* KKCutCircle.m in Sources */,
+				034E9954247542DB005A1CC8 /* KKImageToolBase.m in Sources */,
 				5A0BE397243CC0FF00831859 /* UIImage+MultiFormat.m in Sources */,
 				5A0BE37A243CC0FF00831859 /* MJRefreshComponent.m in Sources */,
 				5A0BE379243CC0FF00831859 /* UIScrollView+MJExtension.m in Sources */,
@@ -791,11 +901,14 @@
 				5A0BE2F2243CBF8500831859 /* NetworkSingleton.m in Sources */,
 				5A0BE38F243CC0FF00831859 /* AFHTTPRequestOperation.m in Sources */,
 				5A0BE2D02430E6FC00831859 /* SbenViewController.m in Sources */,
+				034E995D2475430E005A1CC8 /* UIView+Frame.m in Sources */,
+				034E994B24753799005A1CC8 /* KKCutGridLayer.m in Sources */,
 				5A0BE377243CC0FF00831859 /* MJRefreshLegendHeader.m in Sources */,
 				5A0BE2E02434239C00831859 /* SbenCellModel.m in Sources */,
 				5A0BE392243CC0FF00831859 /* SDWebImageManager.m in Sources */,
 				5A0BE36A243CC0FF00831859 /* NSObject+MJKeyValue.m in Sources */,
 				5A0BE384243CC0FF00831859 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				034E996924754340005A1CC8 /* KKImageEditorViewController.m in Sources */,
 				5A0BE399243CC0FF00831859 /* SDWebImagePrefetcher.m in Sources */,
 				5A0BE2A02430D55500831859 /* main.m in Sources */,
 				5A0BE385243CC0FF00831859 /* UIImageView+AFNetworking.m in Sources */,
@@ -808,6 +921,7 @@
 				5A0BE39E243CC0FF00831859 /* UIView+WebCacheOperation.m in Sources */,
 				5A0BE395243CC0FF00831859 /* SDWebImageDownloader.m in Sources */,
 				5A0BE388243CC0FF00831859 /* UIWebView+AFNetworking.m in Sources */,
+				034E996824754340005A1CC8 /* KKImageEditorTheme.m in Sources */,
 				5A0BE37C243CC0FF00831859 /* MJRefreshGifHeader.m in Sources */,
 				5A0BE36D243CC0FF00831859 /* MJConst.m in Sources */,
 				5A0BE371243CC0FF00831859 /* MJFoundation.m in Sources */,

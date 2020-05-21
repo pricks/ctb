@@ -237,6 +237,15 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"zc"] = @"xxx";//[headiconURL stringByAppendingString:@".jpg"];
+    
+    
+    //test start
+    SbenUploadImgController *suiVC = [SbenUploadImgController new];
+    suiVC.image = image;
+    [self presentViewController:suiVC animated:YES completion:nil];
+    //test end
+    
+    
 
     [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
@@ -260,16 +269,16 @@ NSLog(@"filename：%@",fileName);
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"请求成功：%@",responseObject);
         
-        SbenUploadImgController *suiVC = [SbenUploadImgController new];
-        suiVC.image = image;
-        [self presentViewController:suiVC animated:YES completion:nil];
+//        SbenUploadImgController *suiVC = [SbenUploadImgController new];
+//        suiVC.image = image;
+//        [self presentViewController:suiVC animated:YES completion:nil];
         //        [self.navigationController pushViewController:suiVC animated:YES];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"请求失败：%@",error);
         
-        SbenUploadImgController *suiVC = [SbenUploadImgController new];
-        suiVC.image = image;
-        [self presentViewController:suiVC animated:YES completion:nil];
+//        SbenUploadImgController *suiVC = [SbenUploadImgController new];
+//        suiVC.image = image;
+//        [self presentViewController:suiVC animated:YES completion:nil];
 //        [self.navigationController pushViewController:suiVC animated:YES];
     }];
 
