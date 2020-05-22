@@ -17,6 +17,8 @@
 #import "MJRefresh.h"
 #import "MJExtension.h"
 
+#import "KKImageEditorViewController.h"
+
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -177,8 +179,13 @@
     // UIImagePickerControllerEditedImage 编辑后图片
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     _imageData = UIImageJPEGRepresentation(image, 0.1);
-    
-    [self upLoad:image];
+
+    KKImageEditorViewController *editor = [[KKImageEditorViewController alloc] initWithImage:image delegate:self];
+//    [self.navigationController pushViewController:editor animated:YES];
+    [self presentViewController:editor animated:YES completion:nil];
+
+    //先将这一行注释掉
+//     [self upLoad:image];
     
     NSLog(@"============image=%@",image);
     

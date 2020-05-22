@@ -70,15 +70,30 @@
     //我加的
     [self initTop];
     
-    [self initMenuView];
+//    [self initMenuView];
     [self initImageScrollView];
-    [self initToolSettings];
-    [self initNavigationBar];
-    
+//    [self initToolSettings];
+//    [self initNavigationBar];
+//
     if(_imageView==nil){
         _imageView = [UIImageView new];
         [_scrollView addSubview:_imageView];
         [self refreshImageView];
+    }
+    
+    [self setupCutTool];
+}
+
+- (void) setupCutTool{
+    KKToolBarItem *view = [KKToolBarItem alloc];
+    Class toolClass = NSClassFromString(@"KKCutTool");
+    
+    if(toolClass){
+        id instance = [toolClass alloc];
+        if(instance!=nil && [instance isKindOfClass:[KKImageToolBase class]]){
+            instance = [instance initWithImageEditor:self withToolInfo:view.imgToolInfo];
+            self.currentTool = instance;
+        }
     }
 }
 
