@@ -29,43 +29,19 @@
     return KKToolIndexNumberFourth;
 }
 
-
-#pragma mark- implementation
-- (void)setup{
-     [self.editor fixZoomScaleWithAnimated:YES];
-    _gridView = [[KKCutGridView alloc] initWithSuperview:self.editor.imageView.superview frame:self.editor.imageView.frame];
-    _gridView.backgroundColor = [UIColor clearColor];
-    _gridView.bgColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    _gridView.gridColor = [[UIColor redColor] colorWithAlphaComponent:0.8];
-    _gridView.clipsToBounds = NO;
-    _menuContainer = [[UIView alloc] initWithFrame:self.editor.menuView.frame];
-    _menuContainer.backgroundColor = self.editor.menuView.backgroundColor;
-    [self.editor.view addSubview:_menuContainer];
-    
-    _menuContainer.transform = CGAffineTransformMakeTranslation(0, self.editor.view.height-_menuContainer.top);
-    [UIView animateWithDuration:kImageToolAnimationDuration
-                     animations:^{
-                         _menuContainer.transform = CGAffineTransformIdentity;
-                     }];
-    
+- (CGRect) cutRect{
+    return _gridView.clippingRect;
 }
 
+
+
+
 - (void)setup:(UIView*)superview frame:(CGRect)frame{
-     [self.editor fixZoomScaleWithAnimated:YES];
     _gridView = [[KKCutGridView alloc] initWithSuperview:superview frame:frame];
     _gridView.backgroundColor = [UIColor clearColor];
     _gridView.bgColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    _gridView.gridColor = [[UIColor redColor] colorWithAlphaComponent:0.8];
+    _gridView.gridColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
     _gridView.clipsToBounds = NO;
-    _menuContainer = [[UIView alloc] initWithFrame:self.editor.menuView.frame];
-    _menuContainer.backgroundColor = self.editor.menuView.backgroundColor;
-    [self.editor.view addSubview:_menuContainer];
-
-    _menuContainer.transform = CGAffineTransformMakeTranslation(0, self.editor.view.height-_menuContainer.top);
-    [UIView animateWithDuration:kImageToolAnimationDuration
-                     animations:^{
-                         _menuContainer.transform = CGAffineTransformIdentity;
-                     }];
 }
 
 - (void)cleanup{

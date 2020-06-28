@@ -10,6 +10,7 @@
 #import "SbenTableCell.h"
 #import "SbenCellModel.h"
 #import "SbenUploadImgController.h"
+#import "TakePhotoViewController.h"
 
 #import "GlobalDefines.h"
 #import "AppDelegate.h"
@@ -133,15 +134,30 @@
     }
     
 }
+
 //拍照
--(void)btnclick4Photo
+- (void)btnclick4Photo{
+    
+    TakePhotoViewController *uitpVC = [TakePhotoViewController new];
+    uitpVC.takePhotoBlock = ^(UIImage *photoImage) {
+        NSLog(@"）））））））%@",photoImage);
+    };//使用照片的回调函数
+    
+    [uitpVC.navigationItem setHidesBackButton:YES];
+    //[self presentViewController:uitpVC animated:YES completion:nil];
+    [self.navigationController pushViewController:uitpVC animated:true];
+    
+}
+
+//拍照
+-(void)btnclick4PhotoTmp
 {
     bool canUse= [self isCameraAvailable];
     if(canUse)
     {
         _camera=[[UIImagePickerController alloc]init];
         self.camera.sourceType=UIImagePickerControllerSourceTypeCamera;
-        self.camera.allowsEditing=true;
+        self.camera.allowsEditing=false;
         
         self.camera.delegate=self;
         self.view.backgroundColor=UIColor.lightGrayColor;

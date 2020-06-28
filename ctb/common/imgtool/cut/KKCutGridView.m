@@ -42,7 +42,10 @@ static const NSUInteger kRightBottomCircleView = 4;
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGridView:)];
         [self addGestureRecognizer:panGesture];
         
-        self.clippingRect = self.bounds;
+        //self.clippingRect = self.bounds;//我改的，改成下面这3行，高160，距离2边10像素
+        float width = frame.size.width;
+        float height = frame.size.height;
+        self.clippingRect = CGRectMake(10, height/2-80, width-20, 160);
     }
     return self;
 }

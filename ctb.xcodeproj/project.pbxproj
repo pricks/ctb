@@ -90,6 +90,11 @@
 		5A0BE3B62443235900831859 /* FSbenCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE3B12443235900831859 /* FSbenCellModel.m */; };
 		5A0BE3B72443235900831859 /* FSbenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BE3B32443235900831859 /* FSbenTableCell.m */; };
 		5A3C95EA245E5F760034A164 /* SbenUploadImgController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C95E9245E5F760034A164 /* SbenUploadImgController.m */; };
+		5ABBF6092483546E0014EABB /* TakePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBF6072483546E0014EABB /* TakePhotoViewController.m */; };
+		5ABBF60C248354F20014EABB /* PhotoClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBF60B248354F20014EABB /* PhotoClipView.m */; };
+		5ABBF612248358A20014EABB /* UIImage+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBF60F248358A20014EABB /* UIImage+Custom.m */; };
+		5ABBF613248358A20014EABB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBF610248358A20014EABB /* UIView+Extension.m */; };
+		5ABBF61524835A6F0014EABB /* TakePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ABBF61424835A6F0014EABB /* TakePhotoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,6 +287,15 @@
 		5A0BE3B42443235900831859 /* FSbenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSbenTableCell.h; sourceTree = "<group>"; };
 		5A3C95E8245E5F610034A164 /* SbenUploadImgController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SbenUploadImgController.h; sourceTree = "<group>"; };
 		5A3C95E9245E5F760034A164 /* SbenUploadImgController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SbenUploadImgController.m; sourceTree = "<group>"; };
+		5ABBF6072483546E0014EABB /* TakePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakePhotoViewController.m; sourceTree = "<group>"; };
+		5ABBF6082483546E0014EABB /* TakePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakePhotoViewController.h; sourceTree = "<group>"; };
+		5ABBF60A248354F20014EABB /* PhotoClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoClipView.h; sourceTree = "<group>"; };
+		5ABBF60B248354F20014EABB /* PhotoClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoClipView.m; sourceTree = "<group>"; };
+		5ABBF60E248358A20014EABB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		5ABBF60F248358A20014EABB /* UIImage+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Custom.m"; sourceTree = "<group>"; };
+		5ABBF610248358A20014EABB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		5ABBF611248358A20014EABB /* UIImage+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Custom.h"; sourceTree = "<group>"; };
+		5ABBF61424835A6F0014EABB /* TakePhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakePhotoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,6 +455,7 @@
 		5A0BE2CA2430E51E00831859 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				5ABBF60D2483588B0014EABB /* extension */,
 				034E99402475374C005A1CC8 /* imgtool */,
 				5A0BE2EF243CBF4800831859 /* network */,
 				5A0BE2E82434255100831859 /* util */,
@@ -460,6 +475,9 @@
 		5A0BE2CD2430E59500831859 /* sben */ = {
 			isa = PBXGroup;
 			children = (
+				5ABBF61424835A6F0014EABB /* TakePhotoViewController.xib */,
+				5ABBF6082483546E0014EABB /* TakePhotoViewController.h */,
+				5ABBF6072483546E0014EABB /* TakePhotoViewController.m */,
 				5A0BE2DD243422CE00831859 /* view */,
 				5A0BE2DC243422B600831859 /* model */,
 				5A0BE2CE2430E6C200831859 /* SbenViewController.h */,
@@ -490,6 +508,8 @@
 		5A0BE2DD243422CE00831859 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				5ABBF60A248354F20014EABB /* PhotoClipView.h */,
+				5ABBF60B248354F20014EABB /* PhotoClipView.m */,
 				5A0BE2E12434240700831859 /* SbenTableCell.h */,
 				5A0BE2E22434246C00831859 /* SbenTableCell.m */,
 			);
@@ -719,6 +739,17 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		5ABBF60D2483588B0014EABB /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				5ABBF611248358A20014EABB /* UIImage+Custom.h */,
+				5ABBF60F248358A20014EABB /* UIImage+Custom.m */,
+				5ABBF60E248358A20014EABB /* UIView+Extension.h */,
+				5ABBF610248358A20014EABB /* UIView+Extension.m */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -824,6 +855,7 @@
 			files = (
 				5A0BE29A2430D55500831859 /* Assets.xcassets in Resources */,
 				5A0BE2D82431781D00831859 /* Images.xcassets in Resources */,
+				5ABBF61524835A6F0014EABB /* TakePhotoViewController.xib in Resources */,
 				5A0BE376243CC0FF00831859 /* MJRefresh.bundle in Resources */,
 				5A0BE380243CC0FF00831859 /* SVProgressHUD.bundle in Resources */,
 			);
@@ -866,7 +898,9 @@
 				034E994D24753799005A1CC8 /* KKCutTool.m in Sources */,
 				5A0BE2EE2434255100831859 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				5A0BE38A243CC0FF00831859 /* AFHTTPSessionManager.m in Sources */,
+				5ABBF60C248354F20014EABB /* PhotoClipView.m in Sources */,
 				5A0BE3B52443235900831859 /* FSbenViewController.m in Sources */,
+				5ABBF612248358A20014EABB /* UIImage+Custom.m in Sources */,
 				5A0BE37F243CC0FF00831859 /* SVIndefiniteAnimatedView.m in Sources */,
 				5A0BE2C52430DA7900831859 /* EduTabBarController.m in Sources */,
 				5A0BE36C243CC0FF00831859 /* MJType.m in Sources */,
@@ -920,6 +954,8 @@
 				5A0BE383243CC0FF00831859 /* UIRefreshControl+AFNetworking.m in Sources */,
 				5A0BE39E243CC0FF00831859 /* UIView+WebCacheOperation.m in Sources */,
 				5A0BE395243CC0FF00831859 /* SDWebImageDownloader.m in Sources */,
+				5ABBF613248358A20014EABB /* UIView+Extension.m in Sources */,
+				5ABBF6092483546E0014EABB /* TakePhotoViewController.m in Sources */,
 				5A0BE388243CC0FF00831859 /* UIWebView+AFNetworking.m in Sources */,
 				034E996824754340005A1CC8 /* KKImageEditorTheme.m in Sources */,
 				5A0BE37C243CC0FF00831859 /* MJRefreshGifHeader.m in Sources */,

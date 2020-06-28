@@ -10,4 +10,12 @@
 
 @interface KKCutTool : KKImageToolBase
 
+/**
+ 初始化工具信息
+ */
+- (void)setup:(UIView*)superview frame:(CGRect)frame;
+
+//获取裁剪的矩形区域
+- (CGRect) cutRect;
+
 @end

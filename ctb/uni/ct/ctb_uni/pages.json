@@ -1,0 +1,69 @@
+{
+	"pages": [{
+			"path": "pages/news/index",
+			"style": {
+				// #ifdef H5
+				"titleNView": false,
+				// #endif
+				"navigationBarTitleText": "首页22",
+				"app-plus": {
+					"bounce": "vertical"
+				}
+			}
+		},{
+			"path": "pages/tabbar/ben/ben",
+			"style": {
+				// #ifdef H5
+				"titleNView": false,
+				// #endif
+				"navigationBarTitleText": "本",
+				"app-plus": {
+					"bounce": "vertical"
+				}
+			}
+		},{
+			"path": "pages/news/index",
+			"style": {}
+		},
+		{
+			"path": "pages/detail/detail",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		}
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "轻松学",
+		"navigationBarBackgroundColor": "#2F85FC",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#666666",
+		"selectedColor": "#5677FC",
+		"backgroundColor": "#FFFFFF",
+		"list": [{
+				"pagePath": "pages/news/index",
+				"text": "首页",
+				"iconPath": "static/images/tabbar/code_gray.png",
+				"selectedIconPath": "static/images/tabbar/code_active.png"
+			},
+			{
+				"pagePath": "pages/tabbar/ben/ben",
+				"text": "错题本",
+				"iconPath": "static/images/tabbar/extend_gray.png",
+				"selectedIconPath": "static/images/tabbar/extend_active.png"
+			}
+			// {
+			// 	"pagePath": "pages/tabbar/my/my",
+			// 	"text": "thor",
+			// 	"iconPath": "static/images/tabbar/thor_gray.png",
+			// 	"selectedIconPath": "static/images/tabbar/thor_active.png"
+			// }
+		]
+	}
+}

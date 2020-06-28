@@ -29,5 +29,10 @@
 #define screen_width [UIScreen mainScreen].bounds.size.width
 #define screen_height [UIScreen mainScreen].bounds.size.height
 
+#define kWidth           self.view.frame.size.width
+#define kHeight          self.view.frame.size.height
+
+#define kWeakSelf        __weak typeof(self) weakSelf = self
+
 
 #endif

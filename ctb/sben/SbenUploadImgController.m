@@ -66,16 +66,31 @@
 
 - (void)setUpContent
 {
-    CGFloat title_H = 110, row_H = 50, row_title_W = 100;
+    CGFloat title_H = 80, row_H = 50, row_title_W = 100;
     
     UILabel *viewTitle = [[UILabel alloc] init];
     viewTitle.text = @"错题秒传";
-    viewTitle.frame = CGRectMake(50, 30, (screen_width-50-50), title_H);//居中
+    viewTitle.frame = CGRectMake(50, 10, (screen_width-50-50), title_H);//居中
     viewTitle.font = [UIFont systemFontOfSize:20];
     viewTitle.textAlignment = NSTextAlignmentCenter;
     viewTitle.lineBreakMode = NSLineBreakByTruncatingTail;
     viewTitle.numberOfLines = 1;
     [self.view addSubview:viewTitle];
+    
+    UIButton *saveBtn = [[UIButton alloc] init];
+    [saveBtn setTitle:@"保存" forState:0];
+    saveBtn.frame = CGRectMake(screen_width-80, 10, 50, title_H);
+    [saveBtn setTitleColor:[UIColor blackColor] forState:0];
+    saveBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [saveBtn addTarget:self action:@selector(saveButtonBarItemClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:saveBtn];
+    
+    UIButton *closeBtn = [[UIButton alloc] init];
+    [closeBtn setImage:[UIImage imageNamed:@"RedEnvelopepasswordclose"] forState:UIControlStateNormal];
+    [closeBtn setImage:[UIImage imageNamed:@"RedEnvelopepasswordclose"] forState:UIControlStateSelected];
+    closeBtn.frame = CGRectMake(10, 10, 44, 44);
+    [closeBtn addTarget:self action:@selector(hidePresentController:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:closeBtn];
     
     //分类
     UILabel *categoryLabel = [[UILabel alloc] init];
@@ -123,24 +138,18 @@
     
     //拍照的图片
     UIImageView *ctb_image = [[UIImageView alloc] init];
-    ctb_image.frame = CGRectMake(5, title_H + row_H*2 + 12, (screen_width-10), 80);
+    float imageViewHeight = (screen_width-10)*self.image.size.height/self.image.size.width;
+    ctb_image.frame = CGRectMake(5, title_H + row_H*2 + 20, screen_width-10, imageViewHeight);
     ctb_image.image = self.image;
     [self.view addSubview:ctb_image];
     
-    
-    //默认剪切
-    KKCutTool *cutTool = [KKCutTool new];
-    [cutTool setup:ctb_image frame:ctb_image.frame];
-    
-    
-    UIButton *button = [[UIButton alloc] init];
-    [button setTitle:@"保存" forState:0];
-    button.frame = CGRectMake(0, 0, 44, 44);
-//    button.titleLabel.font = PFR16Font;
-    [button setTitleColor:[UIColor blackColor] forState:0];
-    [button addTarget:self action:@selector(saveButtonBarItemClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
+
+- (void)hidePresentController:(UIButton *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 @end
